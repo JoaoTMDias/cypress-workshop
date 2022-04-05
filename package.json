@@ -15,16 +15,20 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "test:e2e": "cypress open",
-    "test:components": "cypress open-ct",
+    "test": "cypress open",
+    "test:headless": "cypress run",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "plugins": [
+      "cypress"
+    ],
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ]
   },
   "browserslist": {
@@ -40,7 +44,9 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/cypress": "^8.0.2",
     "cypress": "^9.5.3",
+    "eslint-plugin-cypress": "^2.12.1",
     "sass": "^1.49.11"
   }
 }
