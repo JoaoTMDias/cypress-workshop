@@ -40,29 +40,13 @@ describe("Todoist - Add Task", () => {
     cy.get(TASK_CHK).eq(0).parent().contains("Check tasks for the next sprint");
   });
   it.skip("Add Project", () => {
-    // 1.1 - Click on Add Task Plus (Show actions) button
-    cy.get(PAGETITLE_LBL).contains("Inbox");
-    cy.get(ADDTASK.SHOWACTIONS_BTN).click();
+    // 1.1 - Click on Add Project button
 
-    // 1.2 - Check all buttons and click on Date button (menu)
-    cy.get(ADDTASK.SUBMIT_BTN).should("be.visible");
-    cy.get(ADDTASK.CANCEL_BTN).should("be.visible");
-    cy.get(ADDTASK.PROJECT_MENU_BTN).should("be.visible");
-    cy.get(ADDTASK.DATE_MENU.BTN).should("be.visible").click();
+    // 1.2 - Check all fields and buttons
 
-    // 2.1 - Click on Next Week dropdown (menu)
-    cy.get(ADDTASK.DATE_MENU.NEXTWEEK_VAL).click();
+    // 2.1 - Fill project field and click on Add Project (Submit) button
 
-    // 2.2 - Fill task field and click on Add Task (Submit) button
-    cy.get(ADDTASK.TXT).should("be.visible").type("Check tasks for the next sprint");
-    cy.get(ADDTASK.SUBMIT_BTN).click();
+    // 2.2 - Check Project created
 
-    // 2.3 - Check that the task does not appear for today
-    cy.get(TASK_CHK).should("not.exist");
-
-    // 3.1 - Click on "Next 7 days" menu and check task created
-    cy.get(MENU.NEXT7DAYS_BTN).click();
-    cy.get(PAGETITLE_LBL).contains("Next 7 Days");
-    cy.get(TASK_CHK).eq(0).parent().contains("Check tasks for the next sprint");
   });
 });
