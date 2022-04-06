@@ -6,14 +6,14 @@ describe("Todoist - Add Task", () => {
   beforeEach(() => {
     cy.visit("/");
   });
-  /*
+
   afterEach(() => {
     cy.get(MENU.NEXT7DAYS_BTN).click();
-      cy.get(TASK_CHK).each((task) => {
-        cy.wrap(task).click();
-      });
+    cy.get(TASK_CHK).each((task) => {
+      cy.wrap(task).click();
+    });
   });
-  */
+
   it("Add Task for Next Week", () => {
     // 1.1 - Click on Add Task Plus (Show actions) button
     cy.get(PAGETITLE_LBL).contains("Inbox");
