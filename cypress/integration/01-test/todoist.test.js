@@ -1,18 +1,19 @@
 /// <reference types="cypress" />
 
-import { PAGETITLE_LBL, MENU, ADDTASK, TASK_CHK } from "selectors";
+import { PAGETITLE_LBL, MENU, ADDTASK, TASK_CHK, ADDPROJECT, PROJECT_LBL } from "selectors";
 
 describe("Todoist - Add Task", () => {
   beforeEach(() => {
     cy.visit("/");
   });
-
+  /*
   afterEach(() => {
     cy.get(MENU.NEXT7DAYS_BTN).click();
-    cy.get(TASK_CHK).each((task) => {
-      cy.wrap(task).click();
-    });
+      cy.get(TASK_CHK).each((task) => {
+        cy.wrap(task).click();
+      });
   });
+  */
   it("Add Task for Next Week", () => {
     // 1.1 - Click on Add Task Plus (Show actions) button
     cy.get(PAGETITLE_LBL).contains("Inbox");
@@ -31,22 +32,28 @@ describe("Todoist - Add Task", () => {
     cy.get(ADDTASK.TXT).should("be.visible").type("Check tasks for the next sprint");
     cy.get(ADDTASK.SUBMIT_BTN).click();
 
-    // 2.3 - Check that the task does not appear for today
-    cy.get(TASK_CHK).should("not.exist");
-
     // 3.1 - Click on "Next 7 days" menu and check task created
     cy.get(MENU.NEXT7DAYS_BTN).click();
     cy.get(PAGETITLE_LBL).contains("Next 7 Days");
     cy.get(TASK_CHK).eq(0).parent().contains("Check tasks for the next sprint");
   });
-  it.skip("Add Project", () => {
+  it("Add Project", () => {
     // 1.1 - Click on Add Project button
-
-    // 1.2 - Check all fields and buttons
+    cy.get(PAGETITLE_LBL).contains("Inbox");
+    cy.get(ADDPROJECT.SHOWACTIONS_BTN).click();
 
     // 2.1 - Fill project field and click on Add Project (Submit) button
+    cy.get(ADDPROJECT.WRP)
+      .find(ADDPROJECT.TXT)
+      .invoke("attr", "placeholder")
+      .should("contain", "Name your project");
 
-    // 2.2 - Check Project created
+    cy.get(ADDPROJECT.WRP).find(ADDPROJECT.TXT).type("Lunch time");
 
+    cy.get(ADDPROJECT.SUBMIT_BTN).click();
+
+    // 2.2 - Check Projects (old and new projects)
+    cy.get(PROJECT_LBL).eq(0).contains("Brewery");
+    cy.get(PROJECT_LBL).eq(1).contains("Lunch time");
   });
 });
