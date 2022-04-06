@@ -45,8 +45,10 @@
   },
   "devDependencies": {
     "@testing-library/cypress": "^8.0.2",
+    "@cypress/webpack-preprocessor": "5.11.1",
     "cypress": "^9.5.3",
     "eslint-plugin-cypress": "^2.12.1",
-    "sass": "^1.49.11"
+    "sass": "^1.49.11",
+    "webpack": "5.71.0"
   }
 }
